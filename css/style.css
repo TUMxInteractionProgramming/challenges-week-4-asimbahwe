@@ -270,3 +270,7 @@ li.selected {
 .message.own {
     margin-left: 17.5%;
 }
+.fa,.far
+{
+    font-size: 24px;
+}
