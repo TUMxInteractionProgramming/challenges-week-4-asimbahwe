@@ -76,7 +76,9 @@ function Message(text)
 
 function sendMessage()
 {
-    var message=new Message("Hello Chatter");
+    var messageText=$("#user-message").val();
+    $("#user-message").val("");
+    var message=new Message(messageText);
     console.log(message);
     $("#messages").append(createMessageElement(message));
 }
