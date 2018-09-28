@@ -1,6 +1,6 @@
 /* #6 start the #external #action and say hello */
 console.log("App is alive");
-var currentLocation={latitude:-3.361378,longitude:29.3598782,what3words:"selon.frôlant.ignorer"};
+var currentLocation={latitude:-3.361378,longitude:29.3598782,createdBy:"selon.frôlant.ignorer"};
 var currentChannel;
 
 /**
@@ -61,4 +61,30 @@ function selectTab(tabId) {
 function toggleEmojis() {
     /* $('#emojis').show(); // #show */
     $('#emojis').toggle(); // #toggle
+}
+
+function Message(text)
+{
+    this.createdBy=currentLocation.createdBy;
+    this.latitude=currentLocation.latitude;
+    this.longitude=currentLocation.longitude;
+    this.createdOn=Date.now();
+    this.expiresOn=new Date(this.createdOn+15*60000);
+    this.text=text;
+    this.own=true;
+}
+
+function sendMessage()
+{
+    var message=new Message("Hello Chatter");
+    console.log(message);
+    $("#messages").append(createMessageElement(message));
+}
+function createMessageElement(messageObject)
+{
+    var expiresIn=new Date(Math.round(messageObject.expiresOn-messageObject.createdOn));
+    var themsg='<div class="message"><h3><a href="'+messageObject.createdBy+'" target="_blank"><strong>'+messageObject.createdBy+'</strong></a>'+messageObject.createdOn+'<em>'+expiresIn.getMinutes()+' min. left</em></h3><p>'+messageObject.text+'</p><button>+5 min.</button></div>';
+
+
+    return themsg;
 }

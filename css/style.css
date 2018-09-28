@@ -274,3 +274,9 @@ li.selected {
 {
     font-size: 24px;
 }
+#btn-send
+{
+    width:auto;
+    right: 0;
+    position: absolute;
+}
